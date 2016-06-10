@@ -73,10 +73,11 @@ public class webview_java extends Activity {
         if(getIntent().getExtras().containsKey("TutorialsP"))
             url=getIntent().getExtras().getString("TutorialsP");
         else if(getIntent().getExtras().containsKey("Wiki"))
-            url="file:///android_asset/www/wiki_start.html";
-           // url=getIntent().getExtras().getString("Wiki");
+         //   url="file:///android_asset/www/wiki_start.html";
+            url=getIntent().getExtras().getString("Wiki");
         else if(getIntent().getExtras().containsKey("Moodle"))
-            url=getIntent().getExtras().getString("Moodle");
+            url="file:///android_asset/www/moodle_login.user.js";
+           // url=getIntent().getExtras().getString("Moodle");
         else if(getIntent().getExtras().containsKey("Stack"))
             url=getIntent().getExtras().getString("Stack");
         else {
@@ -94,31 +95,45 @@ public class webview_java extends Activity {
                 return true;
             }
 
+
             public void onPageFinished(WebView view, String url) {
                 // do your javascript injection here, remember "javascript:" is needed to recognize this code is javascript
-               if (getIntent().getExtras().containsKey("Moodle")) {
-                    wv.loadUrl("javascript:document.body.style.color='blue';" +
-                            "document.getElementsByClassName('headermain')[0].style.color='blue';" +
-                            "var parnt=document.getElementsByClassName('text_to_html')[0];" +
-                            "var child=parnt.firstChild;" +
-                            "parnt.removeChild(child);" +
 
-                            "var child2=document.getElementsByClassName('text_to_html')[0];" +
-                            "var parnt2=child2.parentNode;" +
-                            "parnt2.removeChild(child2);" +
-
-                            "var parnt3=document.getElementsByClassName('signuppanel')[0];" +
-                            "parnt3.innerHTML='';" +
-                            "var parnt4=document.getElementById('page-footer');" +
-                            "parnt4.removeChild(parnt4.childNodes[1]);");
-
-                } else if (getIntent().getExtras().containsKey("Stack")) {
+                if (getIntent().getExtras().containsKey("Stack")) {
                     wv.loadUrl("javascript:var gr_child=document.getElementById('mainbar');" +
                             "var child=gr_child.parentNode;" +
                             "var parent=child.parentNode;" +
                             "parent.removeChild(child);");
                 }
+
+                if (url.contains("wikipedia.org/")) {
+                    wv.loadUrl("javascript:var url=String(document.URL);" +
+                            "if(url.search('www.wiki')!=-1){" +
+                            "  var langLi=document.getElementById('js-lang-list-container');" +
+                            "  var langLiPa=langLi.parentNode;" +
+                            "  langLiPa.removeChild(langLi);" +
+                            "}" +
+                            "else if(url.search('en.m')!=(-1)){" +
+                            "  var section_0=document.getElementById('section_0');" +
+                            "  var infobox=document.getElementsByTagName('table')[0];" +
+                            "  var firstImage=infobox.getElementsByTagName('img')[0].parentNode;" +
+                            "  var thumbInner=document.getElementsByClassName('thumbinner')[0];" +
+                            "  var thumbFImage=thumbInner.firstChild;" +
+                            "  var firstP=document.getElementsByTagName('p')[0];" +
+                            "  document.getElementsByTagName('html')[0].innerHTML='<head></head><body></body>';" +
+                            "  var bdy=document.getElementsByTagName('body')[0];" +
+                            "  bdy.appendChild(section_0);" +
+                            "  if(firstImage==undefined){" +
+                            "    bdy.appendChild(thumbFImage);" +
+                            "  }" +
+                            "  else{" +
+                            "    bdy.appendChild(firstImage);" +
+                            "  }" +
+                            "  bdy.appendChild(firstP);" +
+                            "}");
+                }
             }
+
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
@@ -127,8 +142,8 @@ public class webview_java extends Activity {
             }
         });
 
-            wv.loadUrl(url);
-
-        }
+        wv.loadUrl(url);
 
     }
+
+}

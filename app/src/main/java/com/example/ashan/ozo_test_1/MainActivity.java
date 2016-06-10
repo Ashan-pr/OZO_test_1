@@ -38,9 +38,9 @@ public class MainActivity extends Activity {
         btnTuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentYou=new Intent(MainActivity.this,webview_java.class);
-                intentYou.putExtra("TutorialsP", Tuto); //passing address, here You_tube means a key to identify the value we are passing
-                startActivity(intentYou);
+                Intent Tutor=new Intent(MainActivity.this,webview_java.class);
+                Tutor.putExtra("TutorialsP", Tuto); //passing address, here TutorialsP means a key to identify the value we are passing
+                startActivity(Tutor);
             }
         });
 
