@@ -14,7 +14,8 @@
         android:background="#898989"
         android:layout_alignBottom="@+id/btnMoodle"
         android:layout_margin="25dp"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/view" />
 
     <View
         android:layout_width="fill_parent"
@@ -40,6 +41,13 @@
         android:layout_margin="25dp"
         android:layout_alignParentStart="true" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#898989"
+        android:layout_alignBottom="@+id/btnW3Cschools"
+        android:layout_margin="25dp"
+        android:layout_alignParentStart="true" />
 
     <Button
         style="@style/MainMenuButtonText"
@@ -81,9 +89,19 @@
         android:id="@+id/btnStackOverflow"
         android:background="@drawable/btn_green"
         android:text="Stack overflow"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/btnW3Cschools"
         android:layout_centerHorizontal="true"
          />
+    <Button
+        style="@style/MainMenuButtonText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnW3Cschools"
+        android:background="@drawable/btn_green"
+        android:text="W3Cschools"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,6 +112,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:autoText="false"
-        android:textColor="#fffdfd" />
+        android:textColor="#fffdfd"
+        android:clickable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rate app"
+        android:id="@+id/txtRate"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ff2228"
+        android:clickable="true" />
 
 </RelativeLayout>

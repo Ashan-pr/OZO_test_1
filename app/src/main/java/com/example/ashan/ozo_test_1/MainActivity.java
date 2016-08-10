@@ -19,21 +19,35 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);  // removes the title bar from activity
         setContentView(R.layout.activity_main);
 
-        Button btnMoodle,btnWiki,btnTuto,btnStack;
+        Button btnMoodle,btnWiki,btnTuto,btnStack,btnSchool;
+
+        TextView txtRate=(TextView)findViewById(R.id.txtRate);
 
         btnMoodle=(Button)findViewById(R.id.btnMoodle);
         btnStack=(Button)findViewById(R.id.btnStackOverflow);
         btnWiki=(Button)findViewById(R.id.btnWiki);
         btnTuto=(Button)findViewById(R.id.btnTuto);
+        btnSchool=(Button)findViewById(R.id.btnW3Cschools);
 
-        final String Tuto,Wiki,Moodle,Stack;
-        Tuto="http://www.tutorialspoint.com/";
+
+        final String Tuto,Wiki,Moodle,Stack,school;
+        Tuto="https://www.tutorialspoint.com";
         Wiki="https://www.wikipedia.org/";
         Moodle="https://moodle.itfac.mrt.ac.lk/login/index.php";
-        Stack="http://stackoverflow.com/";
+        Stack="http://stackoverflow.com/??tab=month";
+        school="http://www.w3schools.com/";
+
 
         final TextView txtAppName=(TextView)findViewById(R.id.txtAppName);
         txtAppName.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,android.R.anim.slide_in_left));
+
+        txtRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Ratings = new Intent(MainActivity.this, RatingAndComments.class);
+                startActivity(Ratings);
+            }
+        });
 
         btnTuto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +84,15 @@ public class MainActivity extends Activity {
                 Intent intentMoodle=new Intent(MainActivity.this,webview_java.class);
                 intentMoodle.putExtra("Moodle",Moodle);
                 startActivity(intentMoodle);
+            }
+        });
+
+        btnSchool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSchools=new Intent(MainActivity.this,webview_java.class);
+                intentSchools.putExtra("School",school);
+                startActivity(intentSchools);
             }
         });
     }
